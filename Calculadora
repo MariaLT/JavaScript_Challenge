@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora_JavaScript</title>
+    <style type="text/css">
+        .calculator {
+            background-color: antiquewhite;
+            width: 500px;
+            height: 600px;
+            text-align: center;
+
+            margin: auto;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        .screen {
+            width: 450px;
+            height: 80px;
+            margin: auto;
+            color: black;
+            text-align: right;
+            font-size: xx-large;
+        }
+
+        .button {
+            width: 80px;
+            height: 70px;
+            background-color: chocolate;
+            color: white;
+            font-weight: bolder;
+        }
+
+        .operator {
+            width: 70px;
+            height: 50px;
+            background-color: dimgray;
+            color: white;
+            font-weight: bolder;
+        }
+
+    </style>
+    <script>
+        let num1=0;
+        let num2=0;
+      
+
+        function getNumber(number) {
+            if (num1 == 0 && num1 !== '0.') {
+                num1 = number;
+            } else {
+                num1 += number;
+            }
+            copyToScreen();
+        }
+
+        function erase() {
+            num1 = 0;
+            num2 = 0;
+            copyToScreen();
+
+        }
+
+        function copyToScreen() {
+            document.getElementById("screen").value = num1;
+        }
+
+        function calculate(valor) {
+            if (num1 == 0) {
+                num1 = parseFloat(document.getElementById("screen").value);
+            }
+            num2 = parseFloat(num1);
+            num1 = 0;
+            operator = valor;
+        }
+
+        function equal() {
+            num1 = parseFloat(num1);
+            switch (operator) {
+                case '+':
+                    num1 += num2;
+                    break;
+                case '-':
+                    num1 = num2 - num1;
+                    break;
+                case '*':
+                    num1 *= num2;
+                    break;
+                case '/':
+                    num1 = num2 / num1;
+                    break;
+            }
+            copyToScreen();
+            num2 = parseFloat(num1);
+            num1 = 0;
+        }
+    </script>
+</head>
+<body>
+
+</body>
+<table class="calculator">
+    <tr>
+        <td colspan="5">
+            <input type="text" id="screen" class="screen" maxlength="25" readonly="true">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="Button" id="1" value="1" class="button" onclick="getNumber('1')">
+        </td>
+        <td>
+            <input type="Button" id="2" value="2" class="button" onclick="getNumber('2')">
+        </td>
+        <td>
+            <input type="Button" id="3" value="3" class="button" onclick="getNumber('3')">
+        </td>
+        <td>
+            <input type="Button" id="+" value="+" class="operator" onclick="calculate('+')">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="Button" id="4" value="4" class="button" onclick="getNumber('4')">
+        </td>
+        <td>
+            <input type="Button" id="5" value="5" class="button" onclick="getNumber('5')">
+        </td>
+        <td>
+            <input type="Button" id="6" value="6" class="button" onclick="getNumber('6')">
+        </td>
+        <td>
+            <input type="Button" id="-" value="-" class="operator" onclick="calculate('-')">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="Button" id="7" value="7" class="button" onclick="getNumber('7')">
+        </td>
+        <td>
+            <input type="Button" id="8" value="8" class="button" onclick="getNumber('8')">
+        </td>
+        <td>
+            <input type="Button" id="9" value="9" class="button" onclick="getNumber('9')">
+        </td>
+        <td>
+            <input type="Button" id="x" value="x" class="operator" onclick="calculate('x')">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="Button" id="c" value="c" class="button" onclick="erase()">
+        </td>
+        <td>
+            <input type="Button" id="0" value="0" class="button" onclick="getNumber('0')">
+        </td>
+        <td>
+            <input type="Button" id="=" value="=" class="button" onclick="equal()">
+        </td>
+        <td>
+            <input type="Button" id="/" value="/" class="operator" onclick="calculate('/')">
+        </td>
+    </tr>
+</table>
+</html>
